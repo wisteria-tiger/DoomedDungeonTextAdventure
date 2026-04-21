@@ -16,7 +16,7 @@
 
 #Prompt for name
 
-name = input("Salutations brave adventurer! What do you call yourself in this fantastical world of ours?" )
+name = input("Salutations brave adventurer! What do you call yourself in this fantastical world of ours? ")
 weapon = ""
 #Prompt for weapon of choice (sword, axe, or spear)
 weapon_choice = input("So your name is Knight %s, huh? Shall you wield the valiant sword(1), the imposing axe(2), or the tactical spear?(3)" %name)
@@ -37,6 +37,7 @@ def choose_weapon(weapon_choice):
             return "You have chosen to use your bare fists! Since you have such an attitude!", weapon
 #Give the lowdown on what the setting is like
 player = {name, weapon}
+
 
 #Have the player arrive at the dungeon's entrance after gathering supplies, accentuating how excited the knight is to explore the famed dungeon
 #CHOICE 1 - Give them the choice to enter the dungeon, or decide just to straight up leave because the entrance looks really depressing compared to the poster advertising the dungeon

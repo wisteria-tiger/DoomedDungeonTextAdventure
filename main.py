@@ -16,35 +16,44 @@
 
 #Prompt for name
 
-name = input("Salutations brave adventurer! What do you call yourself in this fantastical world of ours? ")
-weapon = ""
+
+sword_flag = False
+axe_flag = False
+spear_flag = False
 health = 3
 potions = 3
 #Prompt for weapon of choice (sword, axe, or spear)
-weapon_choice = input("So your name is Knight %s, huh? Shall you wield the valiant sword(1), the imposing axe(2), or the tactical spear?(3)" %name)
-def choose_weapon(weapon_choice):
-    match weapon_choice:
-        case 1:
-            print("You have chosen the valiant sword!")
-            weapon = "sword"
-        case 2:
-            weapon = "axe"
-            return "You have chosen the imposing axe!", weapon
-        case 3:
-            print()
-            weapon = "spear"
-            return "You have chosen the tactical spear!", weapon
-        case _:
-            weapon = "fists"
-            return "You have chosen to use your bare fists! Since you have such an attitude!", weapon
+
 #Give the lowdown on what the setting is like
-player = {name, weapon, health, potions}
-
-
 #Have the player arrive at the dungeon's entrance after gathering supplies, accentuating how excited the knight is to explore the famed dungeon
 #CHOICE 1 - Give them the choice to enter the dungeon, or decide just to straight up leave because the entrance looks really depressing compared to the poster advertising the dungeon
 #Leaving the dungeon entrance ends the game anticlimactically.
-
+print("After a long, arduous journey and a quick stop for potions, you have arrived at the entrance of the terrible Doom Dungeon. ")
+name = input("You, a brave knight, seek to brave this legendary dungeon so that the name... uh... whats your name again?\n")
+print("Right, right... So the name Knight %s will be known throughout the lands! However, upon closer inspection, it seems that time has not been kind to the once grand archway into the dungeon. In fact, it's rather depressing." %name)
+dungeon_entrance_choice = input("While it was a very long, arduous journey, you could always find another, more exciting looking dungeon to spend your valuable time in. What say you, Knight %s?\nW TO ADVANCE   S TO ABANDON\n" %name)
+print()
+if dungeon_entrance_choice.upper() == "W":
+    weapon_choice = int(input("Alrighy then, onward! In preparation for your adventure, you a draw a fierce weapon; shall you wield a sword(1), an axe(2), or a spear?(3): "))
+    if weapon_choice == 1:
+        print("You have drawn a valiant sword!")
+        sword_flag = True
+        health = 3
+        potions = 2
+    elif weapon_choice == 2:
+        print("You have drawn a powerful axe!")
+        axe_flag = True
+        health = 4
+        potions = 1
+    elif weapon_choice == 3:
+        print("You have drawn a keen spear!")
+        spear_flag  = True
+        health = 2
+        potions = 4
+else:
+    print("Well, if that's what you want. Off to look for a different adventure you go...")
+    raise SystemExit
+player = {name, health, potions}
 
 #------------------------
 #PLAYER ENTERS THE DUNGEON

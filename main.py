@@ -18,6 +18,8 @@
 
 name = input("Salutations brave adventurer! What do you call yourself in this fantastical world of ours? ")
 weapon = ""
+health = 3
+potions = 3
 #Prompt for weapon of choice (sword, axe, or spear)
 weapon_choice = input("So your name is Knight %s, huh? Shall you wield the valiant sword(1), the imposing axe(2), or the tactical spear?(3)" %name)
 def choose_weapon(weapon_choice):
@@ -36,7 +38,7 @@ def choose_weapon(weapon_choice):
             weapon = "fists"
             return "You have chosen to use your bare fists! Since you have such an attitude!", weapon
 #Give the lowdown on what the setting is like
-player = {name, weapon}
+player = {name, weapon, health, potions}
 
 
 #Have the player arrive at the dungeon's entrance after gathering supplies, accentuating how excited the knight is to explore the famed dungeon
@@ -61,12 +63,21 @@ player = {name, weapon}
 #PLAYER LEARNS OF THE DUNGEON'S PLIGHT
 #----------------------
 
-#Player finds goblin who looks like hes dying of starvation. He makes a weak swing that pings off the player's armor harmlessly. The goblin thenn breaks down and starts crying. Out of pity, the player can: 
-#1. PUt it out of its misery with a quick strike.
-#2. Ask why it is in its current state. 
+# Player finds goblin who looks like hes dying of starvation. He makes a weak swing that pings off the player's armor harmlessly. The goblin thenn breaks down and starts crying. Out of pity, the player can: 
+# 1. Put it out of its misery with a quick strike.
+# 2. Ask why it is in its current state. 
 
 # If the player kills the goblin, they are none the wiser to the dungeon's plight and they decide to leave out of a newfound sadness. the game ends on a pretty depressing note.
-# If the player asks the goblin why its cryinng, the goblin decides to vent its frustrations by explaining that the dungeon has basically gone bankutpt with a severe lack of fighting spirit to go around,
+# If the player asks the goblin why its crying, the goblin decides to vent its frustrations by explaining that the dungeon has basically gone bankutpt with a severe lack of fighting spirit to go around,
 # so the player can then decide to somehow help the dungeon's inhabitants or let the dungeon die. 
 
-# 
+#----------------------
+#PLAYER SAVES/DOOMS THE DUNGEON
+#----------------------
+
+# if the player decides to help, they must fight every enemy on the way to the dungeon's treasure, saving the dungeon and gaining a prize for their work. They will then show off the prize to other adventurers, steering them towards the dungeon and revitalzing it for years to come
+# They can also choose to avoid the enemies to try and get the treasure with little effort, the dungeon will still die in the process. 
+# if the player decides to let the dungeon die, they must make their way out of the dungeon in one piece. In a last ditch effort, the dungeon rearranges itself and sets traps throughout its halls to try and force the player to provide fighting spirit.
+# if the player dies while attempting to escape the dungeon, their soul is consumed, and the dungeon is revitalized for a few years before eventually falling into disarray, withering away for good.
+
+# if the player makes it out of the dungeon, the dungeon will wither away as it was going to.

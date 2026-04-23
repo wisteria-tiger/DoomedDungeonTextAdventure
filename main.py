@@ -15,13 +15,11 @@
 #-----------------------
 
 #Prompt for name
+import random
 
-
-sword_flag = False
-axe_flag = False
-spear_flag = False
 health = 3
 potions = 3
+fighting_spirt = 0
 #Prompt for weapon of choice (sword, axe, or spear)
 
 #Give the lowdown on what the setting is like
@@ -37,36 +35,30 @@ if dungeon_entrance_choice.upper() == "W":
     weapon_choice = int(input("Alrighy then, onward! In preparation for your adventure, you a draw a fierce weapon; shall you wield a sword(1), an axe(2), or a spear?(3): "))
     if weapon_choice == 1:
         print("You have drawn a valiant sword!")
-        sword_flag = True
+        weapon = "sword"
         health = 3
         potions = 2
     elif weapon_choice == 2:
         print("You have drawn a powerful axe!")
-        axe_flag = True
+        weapon = "axe"
         health = 4
         potions = 1
     elif weapon_choice == 3:
         print("You have drawn a keen spear!")
-        spear_flag  = True
+        weapon = "spear"
         health = 2
         potions = 4
 else:
     print("Well, if that's what you want. Off to look for a different adventure you go...")
     raise SystemExit
-player = {name, health, potions}
+player = {name, weapon, health, potions}
 
 #------------------------
 #PLAYER ENTERS THE DUNGEON
 #------------------------
 #The player chooses to enter the dungeon, further encouraging a sense of disappointment as they look upon the gray and sullen halls and rooms. They expected grand setpieces and ancient stages of battle, nothing like what they've seen before.
-
-#The player finally stumbles upon an enemy, a shambling skeleton that, somehow, looks more withered than you thought bones could be. It stumbles towards the player.
-
-#CHOICE 2 - Attack the skeleton OR walk past it (it's moving really slow)
-#ATTACK: THe skeleton tumbles back on its butt... pelvic bone? It was a solid strike, but the skeleton struggles to right itself, a faint spark now in it's eye sockets. It attacks with more force this time, requiring a stronger strike to dispatch.
-#AVOID: THe skeleton's jaw drops in shock at the player's audacity to walk past an "obvious" threat. However, it seems to crumble into a pile of bones in it's weak attempt to protest. 
-
-#The player continues on, taking note of the encounter.
+print("With your weapon at the ready, you press forward into the dungeon. Legends tell of the grand gold pillars and ceilings of emerald that watched great battles rage within the dungeon. Despite the initial look of the entrance, you can't help but retain some hope for whats ahead.")
+print("As you get enter, however, the halls and ceilings reveal themselves to be... blank, gray stone. The only variation is the occasional mazelike intersection. There's nothing imposing about the dungeon from what you've seen, not even a dank odor. It's awfully boring. \nYou continue on, searching for any sign of an enemy to fight.")
 
 #----------------------
 #PLAYER LEARNS OF THE DUNGEON'S PLIGHT
@@ -75,10 +67,61 @@ player = {name, health, potions}
 # Player finds goblin who looks like hes dying of starvation. He makes a weak swing that pings off the player's armor harmlessly. The goblin thenn breaks down and starts crying. Out of pity, the player can: 
 # 1. Put it out of its misery with a quick strike.
 # 2. Ask why it is in its current state. 
+goblin_choice = input("Finally, after hours of searching, you stumble upon a terrifying goblin - is what I'd like to tell you, but it looks rather worse for wear, with sunken cheeks and bloodshot eyes. \nWill you fight it, or... inquire about its sorry state, Knight %s?" %name) 
+if goblin_choice.upper() == "W":
+    def fight_goblin():
+        goblin_health = 3
+        while goblin_health > 1:
+            action = input("W TO ATTACK  S TO HEAL")
+            if action.upper() == "W":
+                print("You attack the goblin your %s!" %weapon)
+                goblin_health -= 1
+                print("It loses 1 health!")
+            elif action.upper() == "S" and potions > 0:
+                print("You decide to heal with a potion.\n HEALTH = %d, POTIONS = %d" %health %potions)
+                health += 1
+                potions -= 1
+            elif action.upper() == "S"  and potions == 0:
+                print("You don't have any more potions!")
+            else:
+                print("You do nothing, for some reason...")
 
-# If the player kills the goblin, they are none the wiser to the dungeon's plight and they decide to leave out of a newfound sadness. the game ends on a pretty depressing note.
+            if random.random() < 0.50:
+                print("The goblin attacks!")
+                if health == 0:
+                    print("You took one hit too many! Game over...")
+                    raise SystemExit
+                health -= 1
+                print("You lost 1 health! HEALTH = %d" %health)
+            else:
+                print("The goblin grunts, as if annoyed that it has to deal with you. Quite rude.")
+
+            
+    fight_goblin()
+    print("You have the goblin on the ropes! It drops its club, raising its hands as if to begging for mercy. Shall you spare it, or finish it off?")
+    decision = input ("W TO KILL  S TO SPARE")
+    if decision.upper() == "W":
+        print("The goblin perishes at your hand. You continue on, slightly satisfied by some kind of battle.")
+    else:
+        print("The goblin looks up, its face looking revitalized from the battle.")
+        print("It thanks you for the combat, and explains that the dungeon has lost its former glory due to a lack of adventurers such as yourself providing the dungeon with their fighting spirit.")
+        print("He explains that you must battle the rest of the monsters and claim the dungeon's treasure to help restore it to its former glory. Shall you take on this burden, or cut your losses and escape the dungeon?")
+else:
+    print("The goblin is surpised by your kindess, and decides to confide in you about the dungeon's plight.")
+    print("He explains that you must battle the rest of the monsters and claim the dungeon's treasure to help restore it to its former glory. Shall you take on this burden, or cut your losses and escape the dungeon?")
+# If the player kills the goblin, they are none the wiser to the dungeon's plight and they continue through the dungeon, but they do not know how to save the dungeon.
 # If the player asks the goblin why its crying, the goblin decides to vent its frustrations by explaining that the dungeon has basically gone bankutpt with a severe lack of fighting spirit to go around,
 # so the player can then decide to somehow help the dungeon's inhabitants or let the dungeon die. 
+#The player finally stumbles upon an enemy, a shambling skeleton that, somehow, looks more withered than you thought bones could be. It stumbles towards the player.
+
+#CHOICE 2 - Attack the skeleton OR walk past it (it's moving really slow)
+
+#ATTACK: THe skeleton tumbles back on its butt... pelvic bone? It was a solid strike, but the skeleton struggles to right itself, a faint spark now in it's eye sockets. It attacks with more force this time, requiring a stronger strike to dispatch.
+#AVOID: THe skeleton's jaw drops in shock at the player's audacity to walk past an "obvious" threat. However, it seems to crumble into a pile of bones in it's weak attempt to protest. 
+
+#The player continues on, taking note of the encounter.
+
+
 
 #----------------------
 #PLAYER SAVES/DOOMS THE DUNGEON
